@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.you_can">
-   <application
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
         android:label="you_can"
         android:icon="@mipmap/ic_launcher">
         <activity
