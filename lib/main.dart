@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:you_can/HomeView/Provider/home_provider.dart';
+import 'package:you_can/HomeView/home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,23 +11,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => HomeProvider()),
+      ],
+      child: MaterialApp(
+        title: 'You can',
+        home: HomePage(),
       ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(),
     );
   }
 }
