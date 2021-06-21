@@ -8,7 +8,6 @@ class WorkOutScreen extends StatefulWidget {
   _WorkOutScreenState createState() => _WorkOutScreenState();
 }
 
-
 class _WorkOutScreenState extends State<WorkOutScreen> {
   String btnText = "Start Training";
   Color primaryColor = Color.fromRGBO(76, 104, 218, 1);
@@ -19,11 +18,8 @@ class _WorkOutScreenState extends State<WorkOutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Column(
-
         children: [
-
           Container(
               width: double.infinity,
               height: 300,
@@ -35,6 +31,10 @@ class _WorkOutScreenState extends State<WorkOutScreen> {
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(40),
                     bottomRight: Radius.circular(40),
+                  ))),
+          SizedBox(
+            height: 150,
+          ),
                   )
               )
           ),
@@ -53,6 +53,7 @@ class _WorkOutScreenState extends State<WorkOutScreen> {
                     trainingImage = "Seated.png";
                     trainingEnable = false;
                     btnText = "One";
+                  } else {
                   }
                   else {
                     trainingImage = "Tummy.png";
@@ -63,15 +64,10 @@ class _WorkOutScreenState extends State<WorkOutScreen> {
               },
               child: Text(
                 '$btnText',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25
-                ),
+                style: TextStyle(color: Colors.white, fontSize: 25),
               ),
             ),
           ),
-
-
         ],
       ),
     );
