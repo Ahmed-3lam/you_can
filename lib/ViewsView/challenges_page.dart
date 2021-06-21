@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'colors.dart';
-
 class WorkOutScreen extends StatefulWidget {
   const WorkOutScreen({key}) : super(key: key);
 
@@ -13,34 +11,33 @@ class WorkOutScreen extends StatefulWidget {
 
 class _WorkOutScreenState extends State<WorkOutScreen> {
   String btnText = "Start Training";
-  Color primaryColor =Color.fromRGBO(76, 104, 218, 1);
+  Color primaryColor = Color.fromRGBO(76, 104, 218, 1);
 
   bool trainingEnable = true;
-  String trainingImage = "Tummy.png"  ;
+  String trainingImage = "Tummy.png";
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
 
       body: Column(
 
         children: [
 
-             Container(
+          Container(
               width: double.infinity,
               height: 300,
               decoration: BoxDecoration(
-                color: primaryColor,
-                image: new DecorationImage(
-                  image: new ExactAssetImage('assets/images/$trainingImage'),
-              ),
-    borderRadius: BorderRadius.only(
-      bottomLeft: Radius.circular(40),
-      bottomRight: Radius.circular(40),
-    )
-            )
-            ),
+                  color: primaryColor,
+                  image: new DecorationImage(
+                    image: new ExactAssetImage('assets/images/$trainingImage'),
+                  ),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(40),
+                    bottomRight: Radius.circular(40),
+                  )
+              )
+          ),
           SizedBox(height: 150,),
           Container(
             width: 300,
@@ -51,24 +48,18 @@ class _WorkOutScreenState extends State<WorkOutScreen> {
             ),
             child: MaterialButton(
               onPressed: () {
-                setState(()
-                {
-                  if(trainingEnable){
+                setState(() {
+                  if (trainingEnable) {
                     trainingImage = "Seated.png";
-                    trainingEnable=false;
-                    btnText="One";
-
+                    trainingEnable = false;
+                    btnText = "One";
                   }
-                  else{
-
+                  else {
                     trainingImage = "Tummy.png";
-                    trainingEnable=true;
-                    btnText="Two";
+                    trainingEnable = true;
+                    btnText = "Two";
                   }
-
                 });
-
-
               },
               child: Text(
                 '$btnText',
@@ -80,11 +71,9 @@ class _WorkOutScreenState extends State<WorkOutScreen> {
             ),
           ),
 
-          
-
 
         ],
       ),
     );
   }
-
+}
