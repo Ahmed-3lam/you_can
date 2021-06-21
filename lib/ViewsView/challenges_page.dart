@@ -35,6 +35,10 @@ class _WorkOutScreenState extends State<WorkOutScreen> {
           SizedBox(
             height: 150,
           ),
+                  )
+              )
+          ),
+          SizedBox(height: 150,),
           Container(
             width: 300,
             height: 70,
@@ -50,6 +54,8 @@ class _WorkOutScreenState extends State<WorkOutScreen> {
                     trainingEnable = false;
                     btnText = "One";
                   } else {
+                  }
+                  else {
                     trainingImage = "Tummy.png";
                     trainingEnable = true;
                     btnText = "Two";
