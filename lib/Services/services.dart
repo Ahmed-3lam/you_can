@@ -15,7 +15,7 @@ class Services {
     Map<String, String> parameters = {
       'part': 'snippet,contentDetails,statistics',
       'id': CHANNEL_ID,
-      'key': Constants.API_KEY,
+      'key': StringConstants.API_KEY,
     };
     Map<String, String> headers = {
       HttpHeaders.contentTypeHeader: 'application/json',
@@ -38,7 +38,7 @@ class Services {
       'playlistId': "PLzyJ9JYjUz04eplHJtfG7tOS9QdltlQQD",
       'maxResults': '8',
       'pageToken': pageToken,
-      'key': Constants.API_KEY,
+      'key': StringConstants.API_KEY,
     };
     Map<String, String> headers = {
       HttpHeaders.contentTypeHeader: 'application/json',
