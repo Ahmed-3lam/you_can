@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "764723301817",
+    "project_id": "youcan-317315",
+    "storage_bucket": "youcan-317315.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764723301817:android:0b1e7b283b87d9d336fa68",
+        "android_client_info": {
+          "package_name": "com.example.you_can"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764723301817-mcn7nvm9e4nl91p58tfassjej50lj061.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.you_can",
+            "certificate_hash": "c68e226aab5ee2f2b494cfa83f9418596e0f6146"
+          }
+        },
+        {
+          "client_id": "764723301817-6q843jqmi04udv381fkl36jtk4c4c1id.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7ZrlGHmkfpb6T5o2z4bEtI9clEW2pffc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764723301817-6q843jqmi04udv381fkl36jtk4c4c1id.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

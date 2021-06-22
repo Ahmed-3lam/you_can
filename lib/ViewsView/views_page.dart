@@ -64,7 +64,7 @@ class _ViewsPageState extends State<ViewsPage>
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: [ChallengesPage(), RealLifePage()],
+                  children: [WorkOutScreen(), HomeScreen()],
                 ),
               ),
             ],
