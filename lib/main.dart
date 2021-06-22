@@ -16,6 +16,25 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => HomeProvider()),
       ],
       child: MaterialApp(
+        theme: ThemeData(
+
+          inputDecorationTheme: InputDecorationTheme(
+            filled: true,
+            fillColor: Colors.grey[200],
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide( color: Colors.grey),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderSide: BorderSide( color: Colors.grey),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide( color: Colors.grey),
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+        ),
         title: 'You can',
         home: HomePage(),
       ),
