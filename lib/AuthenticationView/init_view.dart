@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:you_can/AuthenticationView/login_view.dart';
+import 'package:you_can/AuthenticationView/signup_view.dart';
 
 class InitView extends StatelessWidget {
   const InitView({Key key}) : super(key: key);
@@ -28,6 +30,10 @@ class InitView extends StatelessWidget {
                     ),
                     child: MaterialButton(
                       onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(builder: (context) => LoginView()),
+                        (Route<dynamic> route) => false,);
 
                       },
                       child: Text(
@@ -49,6 +55,10 @@ class InitView extends StatelessWidget {
                     ),
                     child: MaterialButton(
                       onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignUpView()),
+                              (Route<dynamic> route) => false,);
 
                       },
                       child: Text(

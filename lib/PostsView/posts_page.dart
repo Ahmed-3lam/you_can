@@ -14,7 +14,7 @@ class PostsPage extends StatelessWidget {
         elevation: 0,
         title: Text("You Can", style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.notifications,color: Colors.black,)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.notifications),color: Colors.black,),
           IconButton(onPressed: (){}, icon: Icon(Icons.near_me_sharp,color: Colors.black,)),
         ]
       ),

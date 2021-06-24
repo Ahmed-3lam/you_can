@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:you_can/AuthenticationView/login_view.dart';
 import 'package:you_can/HomeView/Provider/home_provider.dart';
+import 'package:you_can/OnBoardingScreen/OnBoardingScreen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
