@@ -1,10 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:you_can/AuthenticationView/login_view.dart';
 import 'package:you_can/HomeView/Provider/home_provider.dart';
 import 'package:you_can/Services/Auth/auth.dart';
 import 'package:you_can/Services/Auth/data_base.dart';
 import 'package:you_can/landing_page.dart';
+import 'package:you_can/OnBoardingScreen/OnBoardingScreen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
