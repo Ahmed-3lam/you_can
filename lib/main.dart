@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:you_can/AuthenticationView/login_view.dart';
 import 'package:you_can/HomeView/Provider/home_provider.dart';
+import 'package:you_can/Services/Auth/auth.dart';
+import 'package:you_can/Services/Auth/data_base.dart';
+import 'package:you_can/landing_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,9 +68,19 @@ class MyApp extends StatelessWidget {
 
             // Once complete, show your application
             if (snapshot.connectionState == ConnectionState.done) {
-              return LoginView();
+              return MultiProvider(
+                providers: [
+                  Provider<AuthBase>(create: (context) => Auth()),
+                  Provider<FireStoreDatabase>(
+                      create: (context) => FireStoreDatabase()),
+                ],
+                child: LandingPage(),
+              );
             }
-
+            Provider<AuthBase>(
+              create: (context) => Auth(),
+              child: LandingPage(),
+            );
             // Otherwise, show something whilst waiting for initialization to complete
             return Container(
               color: Colors.white,

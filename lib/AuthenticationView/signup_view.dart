@@ -39,7 +39,7 @@ class _SignUpViewState extends State<SignUpView> {
       var myUser = MyUser(
           uid: user.uid,
           email: user.email,
-          name: user.email,
+          name: nameController.text,
           isDoctor: isDoctor,
           photoUrl: null,
           bio: null,

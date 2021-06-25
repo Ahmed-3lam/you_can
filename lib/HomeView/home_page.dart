@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
     return Consumer<HomeProvider>(
       builder: (context, homeProvider, _) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           bottomNavigationBar: AnimatedBottomNavigationBar(
             icons: <IconData>[
               Icons.home_outlined,

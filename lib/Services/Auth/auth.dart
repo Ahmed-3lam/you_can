@@ -22,7 +22,6 @@ class Auth implements AuthBase {
     }
     return MyUser(
       uid: user.uid,
-      name: user.displayName,
       email: user.email,
     );
   }
