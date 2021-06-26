@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class Profile extends StatelessWidget {
   const Profile({Key key}) : super(key: key);
 
@@ -8,14 +9,6 @@ class Profile extends StatelessWidget {
       appBar: PreferredSize(
         child: AppBar(
           backgroundColor: Colors.white,
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios,
-              size: 30,
-            ),
-            onPressed: () {},
-            color: Colors.black,
-          ),
           title: Text(
             "Profile",
             style: TextStyle(

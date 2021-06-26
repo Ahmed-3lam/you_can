@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:you_can/AuthenticationView/login_view.dart';
 import 'package:you_can/HomeView/Provider/home_provider.dart';
+import 'package:you_can/Models/user.dart';
 import 'package:you_can/Services/Auth/auth.dart';
 import 'package:you_can/Services/Auth/data_base.dart';
 import 'package:you_can/landing_page.dart';
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => HomeProvider()),
+        Provider<MyUser>(create: (context) => MyUser()),
+        Provider<AuthBase>(create: (context) => Auth()),
+        Provider<FireStoreDatabase>(create: (context) => FireStoreDatabase()),
       ],
       child: MaterialApp(
         theme: ThemeData(
@@ -70,14 +74,7 @@ class MyApp extends StatelessWidget {
 
             // Once complete, show your application
             if (snapshot.connectionState == ConnectionState.done) {
-              return MultiProvider(
-                providers: [
-                  Provider<AuthBase>(create: (context) => Auth()),
-                  Provider<FireStoreDatabase>(
-                      create: (context) => FireStoreDatabase()),
-                ],
-                child: LandingPage(),
-              );
+              return LandingPage();
             }
             Provider<AuthBase>(
               create: (context) => Auth(),

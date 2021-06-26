@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
-
 //rename user to myuser bcs firebase change to you user
 class MyUser {
   MyUser({
-    @required this.uid,
+    this.uid,
     this.name,
     this.photoUrl,
     this.email,

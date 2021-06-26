@@ -74,8 +74,8 @@ class Auth implements AuthBase {
   Future<void> signOut() async {
     try {
       await _firebaseAuth.signOut();
-    } catch (e) {
-      print(e.toString());
+    } on FirebaseAuthException catch (e) {
+      throw e;
     }
   }
 

@@ -7,6 +7,7 @@ import 'package:you_can/Constants/string_contants.dart';
 import 'package:you_can/HomeView/home_page.dart';
 import 'package:you_can/Services/Auth/auth.dart';
 import 'package:you_can/Services/valdiation.dart';
+import 'package:you_can/landing_page.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key key}) : super(key: key);
@@ -31,17 +32,17 @@ class _LoginViewState extends State<LoginView> {
       await auth.signInWithEmailAndPassword(
           emailController.text, passwordController.text);
 
+      isLoading = false;
+      setState(() {});
+
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => LandingPage()),
           (route) => false);
     } on FirebaseAuthException catch (e) {
       print('//////////////');
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message)));
-    } finally {
-      isLoading = false;
-      setState(() {});
     }
   }
 
