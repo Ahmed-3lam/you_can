@@ -30,7 +30,7 @@ class _ArticlesPageState extends State<ArticlesPage> {
   Widget build(BuildContext context) {
     final database = Provider.of<FireStoreDatabase>(context, listen: false);
     var currentUser = Provider.of<MyUser>(context, listen: false);
-
+    print("${currentUser.uid}  is user in artilce page");
     return SafeArea(
       child: Container(
         color: Colors.white,

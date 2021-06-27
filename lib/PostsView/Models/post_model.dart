@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 class PostModel {
   PostModel({
     @required this.uid,
+    this.id,
     this.body,
     this.haveImage,
     this.imageUrl,
@@ -11,16 +12,18 @@ class PostModel {
     this.comments,
   });
 
+  final String id;
   final String uid;
   final String body;
   final bool haveImage;
   final String imageUrl;
   final String time;
-  final List<String> likes;
-  final List<String> comments;
+  final List likes;
+  final List comments;
 
   factory PostModel.fromMap(Map<dynamic, dynamic> value, String id) {
     return PostModel(
+      id: id,
       uid: value['uid'],
       body: value['body'],
       haveImage: value['haveImage'],

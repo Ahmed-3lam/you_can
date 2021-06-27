@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:you_can/ArticlesView/Models/article_model.dart';
 import 'package:you_can/Models/user.dart';
+import 'package:you_can/PostsView/Models/comment_model.dart';
 import 'package:you_can/PostsView/Models/post_model.dart';
 import 'package:you_can/Services/Auth/api_path.dart';
 import 'package:you_can/Services/Auth/firestore_servies.dart';
@@ -15,7 +16,16 @@ abstract class Database {
   Stream<List<ArticleModel>> articlesStream();
   Future<void> addSavedArticle({String articleId, String userId});
   Future<void> removeSavedArticle({String articleId, String userId});
+  Future<void> addLikePost({String postId, String userId});
+  Future<void> removeLikePost({String postId, String userId});
   Stream<ArticleModel> articleStream({@required String id});
+  Stream<List<PostModel>> postsStream();
+  Stream<List<PostModel>> userPostsStream(String uid);
+  Future<String> setComment(CommentModel model);
+  Future<void> addCommentToPost({String postId, String commentId});
+  Stream<CommentModel> commentStream({@required String commentId});
+  Stream<PostModel> postStream({@required String pid});
+
 }
 
 class FireStoreDatabase implements Database {
@@ -88,5 +98,68 @@ class FireStoreDatabase implements Database {
   Stream<ArticleModel> articleStream({String id}) => _service.documentStream(
         path: APIPath.article(id),
         builder: (data, documentId) => ArticleModel.fromMap(data, documentId),
+      );
+
+  @override
+  Stream<List<PostModel>> postsStream() => _service.collectionStream(
+        path: APIPath.posts(),
+        builder: (data, documentId) => PostModel.fromMap(data, documentId),
+      );
+
+  @override
+  Future<void> addLikePost({String postId, String userId}) =>
+      _service.setItemToList(
+          path: APIPath.posts(),
+          docId: postId,
+          listName: "likes",
+          data: userId);
+
+  @override
+  Future<void> removeLikePost({String postId, String userId}) =>
+      _service.removeItemFromList(
+          path: APIPath.posts(),
+          docId: postId,
+          listName: "likes",
+          data: userId);
+
+  @override
+  Stream<List<PostModel>> userPostsStream(String uid) =>
+      _service.collectionStream<PostModel>(
+        path: APIPath.posts(),
+        queryBuilder:
+            uid != null ? (query) => query.where('uid', isEqualTo: uid) : null,
+        builder: (data, documentID) => PostModel.fromMap(data, documentID),
+        // sort: (lhs, rhs) => rhs.start.compareTo(lhs.start),
+      );
+
+  @override
+  Future<String> setComment(CommentModel model) async {
+    String reference = await _service.setDataWithoutPathSnap(
+      path: APIPath.comments(),
+      data: model.toMap(),
+    );
+    return reference;
+  }
+
+  @override
+  Future<void> addCommentToPost({String postId, String commentId}) =>
+      _service.setItemToList(
+          path: APIPath.posts(),
+          docId: postId,
+          listName: "comments",
+          data: commentId);
+
+  @override
+  Stream<CommentModel> commentStream({String commentId}) =>
+      _service.documentStream(
+        path: APIPath.comment(commentId),
+        builder: (data, documentId) => CommentModel.fromMap(data, documentId),
+      );
+
+  @override
+  Stream<PostModel> postStream({String pid}) =>
+      _service.documentStream(
+        path: APIPath.post(pid),
+        builder: (data, documentId) => PostModel.fromMap(data, documentId),
       );
 }

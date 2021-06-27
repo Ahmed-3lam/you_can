@@ -1,40 +1,44 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:you_can/Constants/color_constants.dart';
 import 'package:you_can/Models/user.dart';
 import 'package:you_can/PostsView/Models/post_model.dart';
 import 'package:you_can/PostsView/post_item.dart';
 import 'package:you_can/Services/Auth/data_base.dart';
 
-class PostsPage extends StatelessWidget {
-  const PostsPage({Key key}) : super(key: key);
+class MyFeed extends StatelessWidget {
+  final MyUser user;
+  const MyFeed({Key key, @required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var dataBase = Provider.of<FireStoreDatabase>(context, listen: false);
-    var user = Provider.of<MyUser>(context, listen: false);
     print("${user.uid}  is user in post page");
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        iconTheme: IconThemeData(color: ColorsConstants.blackColor),
         title: Text(
-          "You Can",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          "MyFeed",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: StreamBuilder<List<PostModel>>(
-          stream: dataBase.postsStream(),
+          stream: dataBase.userPostsStream(user.uid),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.separated(
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, index) => PostItem(
                   model: snapshot.data[index],
-                  // user: user,
+                  // userUID: user.uid,
                   database: dataBase,
                 ),
                 separatorBuilder: (context, index) => Container(

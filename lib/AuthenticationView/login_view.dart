@@ -31,16 +31,16 @@ class _LoginViewState extends State<LoginView> {
       await auth.signInWithEmailAndPassword(
           emailController.text, passwordController.text);
 
-      isLoading = false;
-      setState(() {});
+      // isLoading = false;
+      // setState(() {});
 
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => LandingPage()),
           (route) => false);
     } on FirebaseAuthException catch (e) {
-      isLoading = false;
-      setState(() {});
+      // isLoading = false;
+      // setState(() {});
       print('//////////////');
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message)));

@@ -16,14 +16,18 @@ class LandingPage extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             MyUser user = snapshot.data;
+            print("${authBase.isNewUser}  is new user landing page");
+
             if (user == null) {
               return LoginView();
             }
-            print(authBase.isNewUser);
+            print("${authBase.isNewUser}  is new user landing page");
+
             return StreamBuilder<MyUser>(
               stream: dataBase.userStream(userId: user.uid),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
+                  print("${snapshot.data.uid}  user is login");
                   return Provider.value(
                     value: snapshot.data,
                     child: HomePage(),

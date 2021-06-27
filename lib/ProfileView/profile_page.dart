@@ -4,6 +4,7 @@ import 'package:you_can/Constants/color_constants.dart';
 import 'package:you_can/Models/user.dart';
 import 'package:you_can/ProfileView/Widgets/profile_card.dart';
 import 'package:you_can/ProfileView/edit_profile.dart';
+import 'package:you_can/ProfileView/my_feed.dart';
 import 'package:you_can/ProfileView/my_saved.dart';
 import 'package:you_can/Services/Auth/auth.dart';
 import 'package:you_can/Services/Auth/data_base.dart';
@@ -69,7 +70,18 @@ class ProfilePage extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            ProfileCard(title: "My feed", onTap: () {}),
+            ProfileCard(
+                title: "My feed",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyFeed(
+                        user: user,
+                      ),
+                    ),
+                  );
+                }),
             ProfileCard(
                 title: "My saved",
                 onTap: () {

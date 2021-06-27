@@ -74,10 +74,6 @@ class MyApp extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.done) {
               return LandingPage();
             }
-            Provider<AuthBase>(
-              create: (context) => Auth(),
-              child: LandingPage(),
-            );
             // Otherwise, show something whilst waiting for initialization to complete
             return Container(
               color: Colors.white,

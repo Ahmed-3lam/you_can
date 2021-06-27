@@ -242,8 +242,6 @@ class _AddPostPageState extends State<AddPostPage> {
     @required MyUser user,
     @required FireStoreDatabase database,
   }) async {
-    isLoading = true;
-    setState(() {});
     if (isArticle) {
       if (bodyController.text.isNotEmpty &&
           aboutController.text.isNotEmpty &&
@@ -265,6 +263,8 @@ class _AddPostPageState extends State<AddPostPage> {
         aboutController.text = "";
         setState(() {});
       } else {
+        isLoading = false;
+        setState(() {});
         final snackBar =
             SnackBar(content: Text('add your article and what it about'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -286,6 +286,8 @@ class _AddPostPageState extends State<AddPostPage> {
         isLoading = false;
         setState(() {});
       } else {
+        isLoading = false;
+        setState(() {});
         final snackBar = SnackBar(content: Text('add your post'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
