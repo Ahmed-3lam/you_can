@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:you_can/ViewsView/MainChallengeScreen.dart';
 import 'package:you_can/ViewsView/challenges_page.dart';
 import 'package:you_can/ViewsView/real_life_page.dart';
 
@@ -64,7 +65,7 @@ class _ViewsPageState extends State<ViewsPage>
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: [WorkOutScreen(), HomeScreen()],
+                  children: [MainChallengeScreen(), HomeScreen()],
                 ),
               ),
             ],
