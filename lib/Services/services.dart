@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:you_can/Constants/string_contants.dart';
+import 'package:you_can/Constants/string_constants.dart';
 import 'package:you_can/Models/channel_info.dart';
 import 'package:you_can/Models/videos_list.dart';
 

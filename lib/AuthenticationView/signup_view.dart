@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:you_can/Constants/color_contants.dart';
-import 'package:you_can/Constants/string_contants.dart';
-import 'package:you_can/HomeView/home_page.dart';
+import 'package:you_can/Constants/color_constants.dart';
+import 'package:you_can/Constants/string_constants.dart';
 import 'package:you_can/Models/user.dart';
 import 'package:you_can/Services/Auth/auth.dart';
 import 'package:you_can/Services/Auth/data_base.dart';
 import 'package:you_can/Services/valdiation.dart';
+import 'package:you_can/landing_page.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({Key key}) : super(key: key);
@@ -43,13 +43,14 @@ class _SignUpViewState extends State<SignUpView> {
           isDoctor: isDoctor,
           photoUrl: null,
           bio: null,
+          savedArticles: [],
           specialization: specialController.text);
 
       await database.setUser(myUser, user.uid);
 
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => LandingPage()),
           (route) => false);
     } on FirebaseAuthException catch (e) {
       print('//////////////');

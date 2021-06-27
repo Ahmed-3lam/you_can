@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:you_can/Constants/color_contants.dart';
-import 'package:you_can/Constants/string_contants.dart';
+import 'package:you_can/Constants/color_constants.dart';
+import 'package:you_can/Constants/string_constants.dart';
 import 'package:you_can/Services/Auth/auth.dart';
 import 'package:you_can/Services/valdiation.dart';
 

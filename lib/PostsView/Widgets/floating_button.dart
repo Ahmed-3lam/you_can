@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:you_can/Constants/color_contants.dart';
+import 'package:you_can/Constants/color_constants.dart';
 
 class FloatingAddPostButton extends StatelessWidget {
   final Function onPressed;

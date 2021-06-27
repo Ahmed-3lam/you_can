@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:you_can/Constants/color_contants.dart';
+import 'package:you_can/Constants/color_constants.dart';
 import 'package:you_can/Models/user.dart';
 import 'package:you_can/ProfileView/Widgets/profile_card.dart';
+import 'package:you_can/ProfileView/edit_profile.dart';
+import 'package:you_can/ProfileView/my_saved.dart';
 import 'package:you_can/Services/Auth/auth.dart';
+import 'package:you_can/Services/Auth/data_base.dart';
 import 'package:you_can/landing_page.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -13,6 +16,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var user = Provider.of<MyUser>(context, listen: false);
     final authBase = Provider.of<AuthBase>(context, listen: false);
+    final dataBase = Provider.of<FireStoreDatabase>(context, listen: false);
 
     print(user.uid);
     print(user.name);
@@ -66,8 +70,29 @@ class ProfilePage extends StatelessWidget {
               height: 15,
             ),
             ProfileCard(title: "My feed", onTap: () {}),
-            ProfileCard(title: "My saved", onTap: () {}),
-            ProfileCard(title: "Edit profile", onTap: () {}),
+            ProfileCard(
+                title: "My saved",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MySaved(
+                              user: user,
+                              database: dataBase,
+                            )),
+                  );
+                }),
+            ProfileCard(
+                title: "Edit profile",
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EditProfile(
+                          user: user,
+                        ),
+                      ));
+                }),
             ProfileCard(
               title: "Logout",
               onTap: () async {

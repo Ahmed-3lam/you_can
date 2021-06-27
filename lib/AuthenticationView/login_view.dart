@@ -2,9 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:you_can/AuthenticationView/forget_password_view.dart';
 import 'package:you_can/AuthenticationView/signup_view.dart';
-import 'package:you_can/Constants/color_contants.dart';
-import 'package:you_can/Constants/string_contants.dart';
-import 'package:you_can/HomeView/home_page.dart';
+import 'package:you_can/Constants/color_constants.dart';
+import 'package:you_can/Constants/string_constants.dart';
 import 'package:you_can/Services/Auth/auth.dart';
 import 'package:you_can/Services/valdiation.dart';
 import 'package:you_can/landing_page.dart';
@@ -40,6 +39,8 @@ class _LoginViewState extends State<LoginView> {
           MaterialPageRoute(builder: (context) => LandingPage()),
           (route) => false);
     } on FirebaseAuthException catch (e) {
+      isLoading = false;
+      setState(() {});
       print('//////////////');
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message)));

@@ -15,6 +15,15 @@ class FireStoreService {
     await reference.set(data);
   }
 
+  Future<void> updateData({
+    @required String path,
+    @required Map<String, dynamic> data,
+  }) async {
+    final reference = FirebaseFirestore.instance.doc(path);
+    print("$path : $data");
+    await reference.update(data);
+  }
+
   Future<void> setDataWithoutPath({
     @required String path,
     @required Map<String, dynamic> data,
@@ -22,6 +31,32 @@ class FireStoreService {
     final reference = FirebaseFirestore.instance.collection(path);
     print("$path : $data");
     await reference.add(data);
+  }
+
+  Future<void> setItemToList({
+    @required String path,
+    @required String docId,
+    @required String listName,
+    @required String data,
+  }) async {
+    final reference = FirebaseFirestore.instance.collection(path).doc(docId);
+    print("$path : $docId");
+    await reference.update({
+      listName: FieldValue.arrayUnion([data])
+    });
+  }
+
+  Future<void> removeItemFromList({
+    @required String path,
+    @required String docId,
+    @required String listName,
+    @required String data,
+  }) async {
+    final reference = FirebaseFirestore.instance.collection(path).doc(docId);
+    print("$path : $docId");
+    await reference.update({
+      listName: FieldValue.arrayRemove([data])
+    });
   }
 
 //
@@ -35,6 +70,20 @@ class FireStoreService {
 //     return reference;
 //   }
 //
+
+  Stream<List<T>> collectionStream<T>({
+    @required String path,
+    @required T builder(Map<String, dynamic> data, String documentId),
+  }) {
+    final reference = FirebaseFirestore.instance.collection(path);
+    final snapshots = reference.snapshots();
+    return snapshots.map((snapshot) => snapshot.docs
+        .map(
+          (snapshot) => builder(snapshot.data(), snapshot.id),
+        )
+        .toList());
+  }
+
   Stream<T> documentStream<T>({
     @required String path,
     @required T builder(Map<String, dynamic> data, String documentID),

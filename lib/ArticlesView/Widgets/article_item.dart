@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:you_can/ArticlesView/Models/article_model.dart';
 import 'package:you_can/ArticlesView/View/aricle_detail.dart';
+import 'package:you_can/Models/user.dart';
 
 class ArticleItem extends StatelessWidget {
-  const ArticleItem({Key key}) : super(key: key);
+  final ArticleModel model;
+  final MyUser currentUser;
+  const ArticleItem({Key key, @required this.model, this.currentUser})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +15,11 @@ class ArticleItem extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ArticleDetail()),
+          MaterialPageRoute(
+              builder: (context) => ArticleDetail(
+                    model: model,
+                    currentUser: currentUser,
+                  )),
         );
       },
       child: Padding(
@@ -26,35 +35,35 @@ class ArticleItem extends StatelessWidget {
                   blurRadius: 1.0,
                 ),
               ]),
-          height: 100,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/images/Group.png"),
+                      image: model.haveImage
+                          ? NetworkImage(model.imageUrl)
+                          : AssetImage("assets/images/Group.png"),
                     ),
                     color: Color(0xFF74BDCB),
                     borderRadius: BorderRadius.circular(20)),
                 width: MediaQuery.of(context).size.width * 0.25,
+                height: MediaQuery.of(context).size.width * 0.25,
               ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      Text("Health", style: TextStyle(fontSize: 16)),
+                      Text(model.about, style: TextStyle(fontSize: 16)),
                       SizedBox(height: 8),
-                      Text("10 tips To improve your health",
-                          style: TextStyle(fontSize: 20))
+                      Text(model.title, style: TextStyle(fontSize: 20))
                     ],
                     crossAxisAlignment: CrossAxisAlignment.start,
                   ),
                 ),
               ),
-              IconButton(
-                  onPressed: () {}, icon: Icon(Icons.bookmark_border_outlined))
+              Container(),
             ],
           ),
         ),
