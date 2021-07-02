@@ -22,7 +22,7 @@ List<BoardingModel> boarding = [
   BoardingModel(
     image: 'assets/images/board2.jpg',
     title: 'The bird dares to break the shell',
-    body: 'hen the shell breaks open and the bird can fly openly'
+    body: 'When the shell breaks open , the bird can fly openly'
   ),
   BoardingModel(
     image: 'assets/images/board3.jpg',
