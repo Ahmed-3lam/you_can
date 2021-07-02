@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:you_can/AuthenticationView/init_view.dart';
+import 'package:you_can/Constants/color_constants.dart';
 
 import 'Models.dart';
 import 'Widgets.dart';
@@ -25,20 +26,21 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         elevation: 0,
         actions: [
           TextButton(
-              onPressed: (){
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => InitView()),
-                      (Route<dynamic> route) => false,
-                );
-              },
-              child: Text(
-                  "Skip"
-              ))
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => InitView()),
+                (Route<dynamic> route) => false,
+              );
+            },
+            child: Text(
+              "Skip",
+              style: TextStyle(color: ColorsConstants.blackColor),
+            ),
+          )
         ],
       ),
-      body:
-      Padding(
+      body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
           children: [
@@ -71,7 +73,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   controller: boardController,
                   effect: ExpandingDotsEffect(
                     dotColor: Colors.grey,
-
+                    activeDotColor: ColorsConstants.lightBlueColor,
                     dotHeight: 10,
                     expansionFactor: 4,
                     dotWidth: 10,
@@ -81,14 +83,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 Spacer(),
                 FloatingActionButton(
+                  backgroundColor: ColorsConstants.lightBlueColor,
                   onPressed: () {
-                    if (isLast)
-                    {
+                    if (isLast) {
                       print("Go to Login");
                       Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => InitView()),
-                    (Route<dynamic> route) => false,);
+                        context,
+                        MaterialPageRoute(builder: (context) => InitView()),
+                        (Route<dynamic> route) => false,
+                      );
                     } else {
                       boardController.nextPage(
                         duration: Duration(
@@ -109,20 +112,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       ),
     );
   }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Container(
 //
