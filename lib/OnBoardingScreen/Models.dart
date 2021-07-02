@@ -16,17 +16,17 @@ class BoardingModel {
 List<BoardingModel> boarding = [
   BoardingModel(
     image: 'assets/images/board1.jpg',
-    title: 'On Board 1 Title',
-    body: 'On Board 1 Body',
+    title: 'YOU CAN',
+    body: 'Don’t let mental blocks control you. Set yourself free'
   ),
   BoardingModel(
     image: 'assets/images/board2.jpg',
-    title: 'On Board 2 Title',
-    body: 'On Board 2 Body',
+    title: 'The bird dares to break the shell',
+    body: 'hen the shell breaks open and the bird can fly openly'
   ),
   BoardingModel(
     image: 'assets/images/board3.jpg',
-    title: 'On Board 3 Title',
-    body: 'On Board 3 Body',
+    title: 'Just be you!',
+    body: 'Never allow anyone to define you!',
   ),
 ];
