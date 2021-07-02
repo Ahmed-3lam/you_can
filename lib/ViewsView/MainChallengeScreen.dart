@@ -28,16 +28,23 @@ class _MainChallengeScreenState extends State<MainChallengeScreen> {
     ];
     List<String> workoutImages=[
       "assets/gif/2.gif",
-      "assets/gif/3.gif",
+      "assets/gif/14.gif",
+      "assets/gif/6.gif",
+      "assets/gif/8.gif",
+      "assets/gif/10.gif"
+    ];
+    List<String> workoutImages2=[
       "assets/gif/4.gif",
-      "assets/gif/5.gif",
-      "assets/gif/6.gif"
+      "assets/gif/23.gif",
+      "assets/gif/7.gif",
+      "assets/gif/9.gif",
+      "assets/gif/11.gif"
     ];
 
     return Scaffold(
 
       body: ListView.builder(
-          itemBuilder: (context,index)=>challengeBuildItem(context,headText[index],image[index],workoutImages,index),
+          itemBuilder: (context,index)=>challengeBuildItem(context,headText[index],image[index],workoutImages,workoutImages2,index),
 
           itemCount: 5
       )

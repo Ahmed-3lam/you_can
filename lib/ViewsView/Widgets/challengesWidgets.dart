@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:you_can/WorkoutView/colors.dart';
 
 Widget challengeBuildItem(context, String headText, String image,
-        List<String> trainingImage, int index) =>
+        List<String> trainingImage,  List<String> trainingImage2,int index) =>
     InkWell(
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => workOutGif(trainingImage[index]),
+              builder: (context) => workOutGif(trainingImage[index],trainingImage2[index]),
             ));
       },
       child: Padding(
@@ -60,7 +60,7 @@ Widget challengeBuildItem(context, String headText, String image,
       ),
     );
 
-Widget workOutGif(String trainingImage) => Scaffold(
+Widget workOutGif(String trainingImage,String trainingImage2) => Scaffold(
       body: Column(
         children: [
           Container(
@@ -75,60 +75,75 @@ Widget workOutGif(String trainingImage) => Scaffold(
                     bottomLeft: Radius.circular(40),
                     bottomRight: Radius.circular(40),
                   ))),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(50),
+          Divider(),
+          Container(
               width: double.infinity,
               height: 300,
               decoration: BoxDecoration(
-                  color: Colors.grey,
+                  color: Colors.grey[20],
+                  image: new DecorationImage(
+                    image: new AssetImage('$trainingImage2'),
+                  ),
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
-                  )),
-              child: Column(
-                children: [
-                  Container(
-                    width: 300,
-                    height: 70,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color: primaryColor,
-                    ),
-                    child: MaterialButton(
-                      onPressed: () {
-                        trainingImage = "assets/gif/2.gif";
-                      },
-                      child: Text(
-                        'Biceps',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Container(
-                    width: 300,
-                    height: 70,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color: primaryColor,
-                    ),
-                    child: MaterialButton(
-                      onPressed: () {
-                        trainingImage = "assets/gif2/3.gif";
-                      },
-                      child: Text(
-                        'Triceps',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
+                    bottomLeft: Radius.circular(40),
+                    bottomRight: Radius.circular(40),
+                  ))),
+
+
+          // Expanded(
+          //   child: Container(
+          //     padding: EdgeInsets.all(50),
+          //     width: double.infinity,
+          //     height: 300,
+          //     decoration: BoxDecoration(
+          //         color: Colors.grey,
+          //         borderRadius: BorderRadius.only(
+          //           topLeft: Radius.circular(40),
+          //           topRight: Radius.circular(40),
+          //         )),
+          //     child: Column(
+          //       children: [
+          //         Container(
+          //           width: 300,
+          //           height: 70,
+          //           decoration: BoxDecoration(
+          //             borderRadius: BorderRadius.all(Radius.circular(10)),
+          //             color: primaryColor,
+          //           ),
+          //           child: MaterialButton(
+          //             onPressed: () {
+          //               trainingImage = "assets/gif/2.gif";
+          //             },
+          //             child: Text(
+          //               'Biceps',
+          //               style: TextStyle(color: Colors.white, fontSize: 25),
+          //             ),
+          //           ),
+          //         ),
+          //         SizedBox(
+          //           height: 50,
+          //         ),
+          //         Container(
+          //           width: 300,
+          //           height: 70,
+          //           decoration: BoxDecoration(
+          //             borderRadius: BorderRadius.all(Radius.circular(10)),
+          //             color: primaryColor,
+          //           ),
+          //           child: MaterialButton(
+          //             onPressed: () {
+          //               trainingImage = "assets/gif2/3.gif";
+          //             },
+          //             child: Text(
+          //               'Triceps',
+          //               style: TextStyle(color: Colors.white, fontSize: 25),
+          //             ),
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // )
         ],
       ),
     );
