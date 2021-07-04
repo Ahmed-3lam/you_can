@@ -6,9 +6,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:you_can/ArticlesView/Models/article_model.dart';
 import 'package:you_can/Constants/color_constants.dart';
+import 'package:you_can/HomeView/Provider/home_provider.dart';
+import 'package:you_can/HomeView/home_page.dart';
 import 'package:you_can/Models/user.dart';
 import 'package:you_can/PostsView/Models/post_model.dart';
 import 'package:you_can/PostsView/Widgets/floating_button.dart';
+import 'package:you_can/PostsView/posts_page.dart';
 import 'package:you_can/Services/Auth/data_base.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
@@ -257,6 +260,11 @@ class _AddPostPageState extends State<AddPostPage> {
             time: DateTime.now().toIso8601String(),
             about: aboutController.text);
         await database.setArticle(model);
+        setState(() {
+          Provider.of<HomeProvider>(context,listen: false).changePages(0);
+        });
+
+
 
         isLoading = false;
         bodyController.text = "";
@@ -285,6 +293,13 @@ class _AddPostPageState extends State<AddPostPage> {
         bodyController.text = "";
         isLoading = false;
         setState(() {});
+
+
+
+     setState(() {
+       Provider.of<HomeProvider>(context,listen: false).changePages(0);
+     });
+
       } else {
         isLoading = false;
         setState(() {});
