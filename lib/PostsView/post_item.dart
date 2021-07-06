@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
+import 'package:skeleton_text/skeleton_text.dart';
 import 'package:you_can/Constants/color_constants.dart';
 import 'package:you_can/Models/user.dart';
 import 'package:you_can/PostsView/Models/post_model.dart';
@@ -54,7 +56,10 @@ class _PostItemState extends State<PostItem> {
                   SizedBox(
                     height: 10,
                   ),
-                  Text(widget.model.body, overflow: TextOverflow.ellipsis),
+                  Text(
+                    widget.model.body,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                   SizedBox(
                     height: 10,
                   ),
@@ -114,15 +119,19 @@ class _PostItemState extends State<PostItem> {
                           SizedBox(width: 5),
                         ],
                       )),
+                      Text(
+                        Jiffy(widget.model.time).fromNow(),
+                        style: TextStyle(color: Colors.grey),
+                      )
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
           );
         } else {
-          return Center(
-            child: CircularProgressIndicator(),
+          return SkeletonAnimation(
+            child: skeleton(),
           );
         }
       },
@@ -169,6 +178,57 @@ class _PostItemState extends State<PostItem> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget skeleton() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    CircleAvatar(backgroundColor: Colors.grey[300]),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 2,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            "",
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+        ],
+      ),
     );
   }
 }

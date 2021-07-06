@@ -12,6 +12,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:you_can/Constants/color_constants.dart';
 import 'package:you_can/Models/channel_info.dart';
 import 'package:you_can/Models/videos_list.dart';
 import 'package:you_can/Services/services.dart';
@@ -68,64 +69,65 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(_loading ? 'Loading...' : 'YouTube'),
-      ),
-      body: Container(
-        color: Colors.white,
-        child: Column(
-          children: [
-            _buildInfoView(),
-            Expanded(
-              child: NotificationListener<ScrollEndNotification>(
-                onNotification: (ScrollNotification notification) {
-                  if (_videosList.videos.length >=
-                      int.parse(_item.statistics.videoCount)) {
-                    return true;
-                  }
-                  if (notification.metrics.pixels ==
-                      notification.metrics.maxScrollExtent) {
-                    _loadVideos();
-                  }
-                  return true;
-                },
-                child: ListView.builder(
-                  controller: _scrollController,
-                  itemCount: _videosList.videos.length,
-                  itemBuilder: (context, index) {
-                    VideoItem videoItem = _videosList.videos[index];
-                    return InkWell(
-                      onTap: () async {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return VideoPlayerScreen(
-                            videoItem: videoItem,
-                          );
-                        }));
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(20.0),
-                        child: Row(
-                          children: [
-                            CachedNetworkImage(
-                              imageUrl: videoItem
-                                  .video.thumbnails.thumbnailsDefault.url,
-                            ),
-                            SizedBox(width: 20),
-                            Flexible(child: Text(videoItem.video.title)),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+    return _loading
+        ? Center(
+            child: CircularProgressIndicator(
+              color: ColorsConstants.lightBlueColor,
             ),
-          ],
-        ),
-      ),
-    );
+          )
+        : Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+                // _buildInfoView(),
+                Expanded(
+                  child: NotificationListener<ScrollEndNotification>(
+                    onNotification: (ScrollNotification notification) {
+                      if (_videosList.videos.length >=
+                          int.parse(_item.statistics.videoCount)) {
+                        return true;
+                      }
+                      if (notification.metrics.pixels ==
+                          notification.metrics.maxScrollExtent) {
+                        _loadVideos();
+                      }
+                      return true;
+                    },
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      itemCount: _videosList.videos.length,
+                      itemBuilder: (context, index) {
+                        VideoItem videoItem = _videosList.videos[index];
+                        return InkWell(
+                          onTap: () async {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return VideoPlayerScreen(
+                                videoItem: videoItem,
+                              );
+                            }));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(20.0),
+                            child: Row(
+                              children: [
+                                CachedNetworkImage(
+                                  imageUrl: videoItem
+                                      .video.thumbnails.thumbnailsDefault.url,
+                                ),
+                                SizedBox(width: 20),
+                                Flexible(child: Text(videoItem.video.title)),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
   }
 
   _buildInfoView() {
@@ -215,13 +217,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         title: Text(widget.videoItem.video.title),
       ),
       body: Container(
-        child: YoutubePlayer(
-          controller: _controller,
-          showVideoProgressIndicator: true,
-          onReady: () {
-            print('Player is ready.');
-            _isPlayerReady = true;
-          },
+        child: Center(
+          child: YoutubePlayer(
+            controller: _controller,
+            showVideoProgressIndicator: true,
+            onReady: () {
+              print('Player is ready.');
+              _isPlayerReady = true;
+            },
+          ),
         ),
       ),
     );

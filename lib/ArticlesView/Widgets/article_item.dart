@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:you_can/ArticlesView/Models/article_model.dart';
 import 'package:you_can/ArticlesView/View/aricle_detail.dart';
 import 'package:you_can/Models/user.dart';
@@ -41,6 +43,7 @@ class ArticleItem extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
+                      fit: BoxFit.cover,
                       image: model.haveImage
                           ? NetworkImage(model.imageUrl)
                           : AssetImage("assets/images/Group.png"),
@@ -57,7 +60,12 @@ class ArticleItem extends StatelessWidget {
                     children: [
                       Text(model.about, style: TextStyle(fontSize: 16)),
                       SizedBox(height: 8),
-                      Text(model.title, style: TextStyle(fontSize: 20))
+                      Text(model.title, style: TextStyle(fontSize: 20)),
+                      SizedBox(height: 8),
+                      Text(
+                        Jiffy(model.time).fromNow(),
+                        style: TextStyle(color: Colors.grey),
+                      )
                     ],
                     crossAxisAlignment: CrossAxisAlignment.start,
                   ),

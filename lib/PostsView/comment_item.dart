@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:you_can/Constants/color_constants.dart';
 import 'package:you_can/Models/user.dart';
@@ -47,6 +48,10 @@ class CommentItem extends StatelessWidget {
                           Text(snapshot.data.name),
                           SizedBox(height: 10),
                           Text(model.body),
+                          Text(
+                            Jiffy(model.time).fromNow(),
+                            style: TextStyle(color: Colors.grey),
+                          )
                         ],
                       ),
                     ),

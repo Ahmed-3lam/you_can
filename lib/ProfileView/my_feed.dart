@@ -34,6 +34,11 @@ class MyFeed extends StatelessWidget {
           stream: dataBase.userPostsStream(user.uid),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              if (snapshot.data.isEmpty) {
+                return Center(
+                  child: Text("you havn\'t posts yet"),
+                );
+              }
               return ListView.separated(
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, index) => PostItem(

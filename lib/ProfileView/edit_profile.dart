@@ -244,6 +244,9 @@ class _EditProfileState extends State<EditProfile> {
       );
       await database.updateUser(model, widget.user.uid);
 
+      final snackBar = SnackBar(content: Text('data saved'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
       buttonLoading = false;
       setState(() {});
     } else {

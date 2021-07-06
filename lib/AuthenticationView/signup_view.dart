@@ -75,7 +75,6 @@ class _SignUpViewState extends State<SignUpView> {
         iconTheme: IconThemeData(color: ColorsConstants.blackColor),
       ),
       backgroundColor: ColorsConstants.whiteColor,
-      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
@@ -132,6 +131,7 @@ class _SignUpViewState extends State<SignUpView> {
                     ),
                     TextFormField(
                       controller: emailController,
+                      keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.mail_outline_outlined),
                         hintText: "example@gmail.com",

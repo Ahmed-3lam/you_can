@@ -25,7 +25,6 @@ abstract class Database {
   Future<void> addCommentToPost({String postId, String commentId});
   Stream<CommentModel> commentStream({@required String commentId});
   Stream<PostModel> postStream({@required String pid});
-
 }
 
 class FireStoreDatabase implements Database {
@@ -104,6 +103,7 @@ class FireStoreDatabase implements Database {
   Stream<List<PostModel>> postsStream() => _service.collectionStream(
         path: APIPath.posts(),
         builder: (data, documentId) => PostModel.fromMap(data, documentId),
+        sort: (lhs, rhs) => rhs.time.compareTo(lhs.time),
       );
 
   @override
@@ -157,8 +157,7 @@ class FireStoreDatabase implements Database {
       );
 
   @override
-  Stream<PostModel> postStream({String pid}) =>
-      _service.documentStream(
+  Stream<PostModel> postStream({String pid}) => _service.documentStream(
         path: APIPath.post(pid),
         builder: (data, documentId) => PostModel.fromMap(data, documentId),
       );

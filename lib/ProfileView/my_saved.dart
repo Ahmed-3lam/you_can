@@ -42,6 +42,16 @@ class MySaved extends StatelessWidget {
                       stream: database.userStream(userId: user.uid),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
+                          if (snapshot.data.savedArticles.isEmpty) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 250),
+                              child: Center(
+                                child: Text("you havn\'t saved yet"),
+                              ),
+                            );
+                          }
+
                           List data = snapshot.data.savedArticles;
                           return ListView.builder(
                               physics: NeverScrollableScrollPhysics(),

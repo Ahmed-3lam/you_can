@@ -39,6 +39,11 @@ class CategoryView extends StatelessWidget {
                 var data = snapshot.data
                     .where((element) => element.about == about)
                     .toList();
+                if (data.isEmpty) {
+                  return Center(
+                    child: Text("there is no articles right now"),
+                  );
+                }
                 return ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,

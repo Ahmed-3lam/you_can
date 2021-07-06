@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:you_can/ArticlesView/Models/article_model.dart';
 import 'package:you_can/Constants/color_constants.dart';
@@ -73,7 +74,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
               child: ListView(
                 // crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(widget.model.title, style: TextStyle(fontSize: 20)),
+                  Text(widget.model.about, style: TextStyle(fontSize: 20)),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     child: Text(widget.model.title,
@@ -93,18 +94,31 @@ class _ArticleDetailState extends State<ArticleDetail> {
                       Text(snapshot.data.name, style: TextStyle(fontSize: 20)),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    child: Container(
-                      height: MediaQuery.of(context).size.width * 0.6,
-                      decoration: BoxDecoration(
-                          color: Colors.blue.shade400,
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                            image: widget.model.haveImage
-                                ? NetworkImage(widget.model.imageUrl)
-                                : AssetImage("assets/images/Group.png"),
-                          )),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        Jiffy(widget.model.time).fromNow(),
+                        style: TextStyle(color: Colors.grey),
+                      )
+                    ],
+                  ),
+                  Offstage(
+                    offstage: !widget.model.haveImage,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: Container(
+                        height: MediaQuery.of(context).size.width * 0.6,
+                        decoration: BoxDecoration(
+                            color: Colors.blue.shade400,
+                            borderRadius: BorderRadius.circular(15),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: widget.model.haveImage
+                                  ? NetworkImage(widget.model.imageUrl)
+                                  : AssetImage("assets/images/Group.png"),
+                            )),
+                      ),
                     ),
                   ),
                   Text(widget.model.body),
