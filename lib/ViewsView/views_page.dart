@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:you_can/Constants/color_constants.dart';
+import 'package:you_can/ViewsView/MainChallengeScreen.dart';
 import 'package:you_can/ViewsView/challenges_page.dart';
 import 'package:you_can/ViewsView/real_life_page.dart';
 
@@ -50,7 +52,7 @@ class _ViewsPageState extends State<ViewsPage>
                   controller: _tabController,
                   indicator: BoxDecoration(
                     borderRadius: BorderRadius.circular(25.0),
-                    color: Color(0xFFAAD6A0),
+                    color: ColorsConstants.lightBlueColor,
                   ),
                   labelColor: Colors.white,
                   unselectedLabelColor: Colors.black,
@@ -64,7 +66,7 @@ class _ViewsPageState extends State<ViewsPage>
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: [ChallengesPage(), RealLifePage()],
+                  children: [MainChallengeScreen(), HomeScreen()],
                 ),
               ),
             ],

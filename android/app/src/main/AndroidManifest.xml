@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="you_can"
+        android:label="you can"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
